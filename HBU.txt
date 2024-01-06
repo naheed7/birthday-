@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Happy Birthday</title>
+    <style>
+        body {
+            background-color: #FFD700; /* Background color (Gold) */
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: #FF1493; /* Header text color (Deep Pink) */
+        }
+
+        #cake {
+            max-width: 100%;
+        }
+
+        #message {
+            font-size: 24px;
+            color: #8B0000; /* Message text color (Dark Red) */
+        }
+
+        #confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #FFD700; /* Confetti color (Gold) */
+            border-radius: 50%;
+            animation: confetti-fall 2s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translate(0, -100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translate(100vw, 100vh);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Birthday!</h1>
+    <img id="cake" src="birthday_cake.jpg" alt="Birthday Cake" />
+    <p id="message">Wishing you a day filled with joy and happiness!</p>
+
+    <!-- Confetti animation -->
+    <div id="confetti"></div>
+
+    <script>
+        // JavaScript for confetti animation
+        const confetti = document.getElementById("confetti");
+
+        function getRandomPosition() {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            return { x, y };
+        }
+
+        function animateConfetti() {
+            const { x, y } = getRandomPosition();
+            confetti.style.left = x + "px";
+            confetti.style.top = y + "px";
+            confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
+            confetti.style.animationDelay = Math.random() + "s";
+        }
+
+        // Create multiple confetti pieces
+        for (let i = 0; i < 50; i++) {
+            const confettiClone = confetti.cloneNode(true);
+            document.body.appendChild(confettiClone);
+            animateConfetti();
+        }
+
+        // Remove the original confetti element
+        confetti.remove();
+    </script>
+</body>
+</html>
